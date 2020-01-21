@@ -1,3 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+:root[theme='dark'] {
+  --bg-color: hsl(0, 0%, 100%);
+  --text-color: #333;
+  --bg-light-color: #555;
 
+  --menu-bg-color: #333;
+  --menu-shadow-color: hsla(0, 0%, 0%, 0.2);
+  --menu-btn-border: #eee;
+  --menu-text-color: #eee;
+  --menu-dropdown-color: #444;
+  --menu-dropdown-color-hover: #555;
 
+  --search-bg-color: hsla(0, 0%, 100%, 0.85);
+  --search-text-color: hsl(0, 0%, 0%);
+  --search-input-bg: #ddd;
+
+  --table-h6: hsl(341, 0%, 0%);
+  --table-header-bg-color: #eee;
+}
+
+:root[theme='space'] {
+  --bg-color: hsl(0, 10%, 10%);
+  --text-color: #eee;
+  --bg-light-color: #555;
+
+  --menu-bg-color: hsl(228, 73%, 78%);
+  --menu-shadow-color: hsla(359, 80%, 80%, 0.2);
+  --menu-btn-border: #111;
+  --menu-text-color: #222;
+  --menu-dropdown-color: hsl(228, 40%, 64%);
+  --menu-dropdown-color-hover: #444;
+
+  --search-bg-color: hsla(0, 10%, 10%, 0.85);
+  --search-text-color: hsl(0, 100%, 100%);
+  --search-input-bg: #eee;
+
+  --table-h6: hsl(346, 82%, 50%);
+  --table-header-bg-color: #eee;
+}
+
+:root[theme='orange'] {
+
+   --text-color: #333;
+   --main-color: 44;
+   --second-color: 213;
+   --eee: #eee;
+   --bg-light-color: hsl(var(--second-color), 14%, 20%);
+   --bg-color: hsl(var(--main-color), 94%, 55%);
+
+   --menu-bg-color: hsl(var(--second-color), 14%, 15%);
+   --menu-shadow-color: hsla(var(--main-color), 50%, 65%, 0.2);
+   --menu-btn-border: var(--eee);
+   --menu-text-color: var(--eee);
+   --menu-dropdown-color: hsl(var(--second-color), 14%, 20%);
+   --menu-dropdown-color-hover: hsl(var(--main-color), 94%, 55%);
+   --menu-dropdown-text-color-hover: var(--text-color);
+
+   --search-bg-color: hsla(var(--main-color), 94%, 55%, 0.85);
+   --search-text-color: hsl(var(--main-color), 40%, 60%);
+   --search-btn-color: hsl(var(--second-color), 14%, 15%);
+   --search-input-bg: #fff;
+
+   --table-h6: var(--text-color);
+   --table-header-bg-color: var(--eee);
+ }
+
+:root[theme='myself'] {
+  --bg-color: hsl(var(--main-hue), 94%, 55%);
+  --text-color: #333;
+  --main-hue: 75;
+  --bg-light-color: hsl(213, 14%, 20%);
+
+  --menu-bg-color: hsl(213, 14%, 15%);
+  --menu-shadow-color: hsla(var(--main-hue), 50%, 65%, 0.2);
+  --menu-btn-border: #eee;
+  --menu-text-color: #eee;
+  --menu-dropdown-color: hsl(213, 14%, 20%);
+  --menu-dropdown-color-hover: hsl(var(--main-hue), 94%, 55%);
+  --menu-dropdown-text-color-hover: var(--text-color);
+
+  --search-bg-color: hsla(var(--main-hue), 94%, 55%, 0.85);
+  --search-text-color: hsl(var(--main-hue), 40%, 60%);
+  --search-btn-color: hsl(213, 14%, 15%);
+  --search-input-bg: #fff;
+
+  --table-h6: var(--text-color);
+  --table-header-bg-color: #eee;
+}
+
+body {
+  background-color: var(--bg-color) !important;
+}
+
+.card-header a{
+  color: var(--table-h6);
+}
+
+@font-face{
+  font-family: 'MyLightFont';
+  src: url('./assets/fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'MyMediumFont';
+  src: url('./assets/fonts/Yanone_Kaffeesatz/static/YanoneKaffeesatz-Medium.ttf') format('truetype');
+}

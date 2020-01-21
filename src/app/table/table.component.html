@@ -1,1 +1,50 @@
-<p>table works!</p>
+<div class="container" *ngIf="mediatorService.getPages().length > 0; else noneResult">
+  <div class="card-columns">
+    <div class="card" *ngFor="let item of mediatorService.getPages()">
+      <h6 class="card-header">
+        <a href="{{getLink(item)}}" target="_blank" class="card-link">{{item.title}}</a>
+      </h6>
+      <div class="card-body">
+        <a class="card-text">&nbsp;&nbsp;&nbsp;{{item.snippet}}</a>
+      </div>
+      <div class="card-footer text-muted">
+        <a title="дата написания статьи">{{item.timestamp | date: 'dd.MM.yyyy'}}</a>
+        <a class="float-right" title="количество слов в статье">
+          <svg id="Layer_1" height="30"  width="30" viewBox="0 0 128 128">
+            <path d="m15.345 6.5h97.31v115h-97.31z" fill="#DDE7EC"/>
+            <g fill="#87AEE2">
+              <path d="m30.6 48.001h10.17v10.164h-10.17z"/><path d="m30.6 69.835h10.17v10.164h-10.17z"/><path d="m30.6 91.668h10.17v10.164h-10.17z"/><path d="m30.6 26.168h10.17v10.164h-10.17z"/>
+              <path d="m97.4 31.751h-46.46a1.75 1.75 0 0 1 0-3.5h46.46a1.75 1.75 0 0 1 0 3.5z"/><path d="m97.4 54.833h-46.46a1.75 1.75 0 0 1 0-3.5h46.46a1.75 1.75 0 0 1 0 3.5z"/><path d="m97.4 77.916h-46.46a1.75 1.75 0 0 1 0-3.5h46.46a1.75 1.75 0 0 1 0 3.5z"/><path d="m97.4 101h-46.46a1.75 1.75 0 1 1 0-3.5h46.46a1.75 1.75 0 0 1 0 3.5z"/>
+          </g></svg>
+
+          {{item.wordcount}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br>
+<div class="loader" *ngIf="!mediatorService.loaderToggle; else loader"></div>
+<br><br><br><br>
+
+<ng-template #loader>
+  <div class="sk-circle-bounce">
+    <div class="sk-child sk-circle-1"></div>
+    <div class="sk-child sk-circle-2"></div>
+    <div class="sk-child sk-circle-3"></div>
+    <div class="sk-child sk-circle-4"></div>
+    <div class="sk-child sk-circle-5"></div>
+    <div class="sk-child sk-circle-6"></div>
+    <div class="sk-child sk-circle-7"></div>
+    <div class="sk-child sk-circle-8"></div>
+    <div class="sk-child sk-circle-9"></div>
+    <div class="sk-child sk-circle-10"></div>
+    <div class="sk-child sk-circle-11"></div>
+    <div class="sk-child sk-circle-12"></div>
+  </div>
+</ng-template>
+
+<ng-template #noneResult>
+  <h6 class="noneResult text-muted text-center">{{mediatorService.getResultText()}}</h6>
+</ng-template>
+
+

@@ -1,15 +1,76 @@
-<div class="content">
-  <div class="container-fluid">
-    <div class="row text-center">
-      <div class="col col-lg-4">
-        <div class="block">Вы искали ранее</div>
-      </div>
-      <div class="col col-lg-4">
-        <div class="block">фильтры</div>
-      </div>
-      <div class="col col-lg-4">
-        <div class="block">темы</div>
+<div class="wrapper">
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row text-center">
+        <div class="col col-lg-4">
+          <div class="block">
+            <div class="dropdown">
+              <div class="dropbtn"><a>вы искали ранее</a></div>
+              <div class="dropdown-content">
+                <div *ngIf="mediatorService.getOldRequests().length !== 0; else oldResultNone">
+                <div
+                  *ngFor="let item of mediatorService.getOldRequests(); let idx = index"
+                   (click)="mediatorService.wikiSearch(item, true)">
+                  <a class="text-left">
+                    {{item}}
+                    <small class="float-right">
+                      {{mediatorService.getOldRequestsTime()[idx] | number:'3.0-0'}}мс
+                    </small>
+                  </a>
+                </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-4">
+          <div class="block">
+            <div class="dropdown">
+              <div class="dropbtn">{{mediatorService.getSortText()[mediatorService.getQuerySort()]}}</div>
+              <div class="dropdown-content">
+                <a (click)="setSort('relevance')">по релевантности</a>
+                <a (click)="setSort('last_edit_desc')">по дате изменения ↓</a>
+                <a (click)="setSort('last_edit_asc')">по дате изменения ↑</a>
+                <a (click)="setSort('create_timestamp_desc')">по дате создания ↓</a>
+                <a (click)="setSort('create_timestamp_asc')">по дате создания ↑</a>
+                <a (click)="setSort('random')">случайно</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-4">
+          <div class="block">
+            <div class="dropdown">
+              <div class="dropbtn">темы</div>
+              <div class="dropdown-content">
+                <a *ngFor="let item of mediatorService.getThemes()"
+                   (click)="mediatorService.setTheme(item)"
+                >{{item}}</a>
+                <div *ngIf="mediatorService.getActiveTheme() !== 'своя'; else range">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+
+<ng-template #oldResultNone>
+  <a>вы еще ничего не искали</a>
+</ng-template>
+
+
+<ng-template #range>
+  <br>
+  <div class="form-group" >
+    <label for="colorSliderHSL">настройка цвета:</label>
+    <input
+      type="range" class="form-control-range" id="colorSliderHSL" name="colorHSL"
+      value="55" min="0" max="359" step="1" (change)="changeColorSlider()"
+    >
+  </div>
+</ng-template>
