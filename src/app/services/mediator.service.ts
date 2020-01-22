@@ -24,6 +24,48 @@ export class MediatorService extends Helper {
 
   loaderToggle = false;
 
+  wikiSearch(queryStr: string, newQuery: boolean): void {
+    Helper.searchStr = queryStr;
+    this.visualService.inputUp();
+    if (!this.loaderToggle) {
+      this.loaderToggle = !this.loaderToggle;
+      let time = performance.now();
+
+      this.queryService.wikiSearch(Helper.searchStr, Helper.searchOffset, Helper.querySort)
+        .subscribe(response => {
+          time = performance.now() - time;
+          this.ifNewQuery(queryStr, newQuery, time);
+          this.ifResponseError(response);
+          this.helperQueryDone(response, newQuery);
+
+        }, error => {
+          console.log(error);
+          Helper.resultText = error.message;
+        });
+    }
+  }
+
+  ifNewQuery(queryStr, newQuery, time) {
+    if (newQuery) {
+      Helper.searchOffset = 0;
+      this.localStorage.newRequest(queryStr, Helper.oldrequests, time, Helper.oldrequestsTime);
+      document.documentElement.scrollTop = 0;
+    }
+  }
+
+  ifResponseError(response) {
+    if (response['error']) {
+      Helper.resultText = response['error'].info;
+    }
+  }
+
+  helperQueryDone(response, newQuery) {
+    Helper.queryDone(response, newQuery);
+    this.loaderToggle = !this.loaderToggle;
+    this.ifNotResult(Helper.pages);
+  }
+
+
   addEventScroll() {
     window.addEventListener('scroll', () => {
       const pageEnd = Helper.ifPageEnd(Helper.queryContinue);
@@ -60,35 +102,6 @@ export class MediatorService extends Helper {
     if (hue !== null) {
       this.visualService.themeHue = +hue;
       document.documentElement.style.setProperty('--main-hue', hue);
-    }
-  }
-
-  wikiSearch(queryStr: string, newQuery: boolean): void {
-    Helper.searchStr = queryStr;
-    this.visualService.inputUp();
-    if (!this.loaderToggle) {
-      this.loaderToggle = !this.loaderToggle;
-      let time = performance.now();
-
-      this.queryService.wikiSearch(Helper.searchStr, Helper.searchOffset, Helper.querySort)
-        .subscribe(response => {
-          time = performance.now() - time;
-          if (newQuery) {
-            Helper.searchOffset = 0;
-            this.localStorage.newRequest(queryStr, Helper.oldrequests, time, Helper.oldrequestsTime);
-            document.documentElement.scrollTop = 0;
-          }
-          if (response['error']) {
-            Helper.resultText = response['error'].info;
-          }
-          this.loaderToggle = !this.loaderToggle;
-          Helper.queryDone(response, newQuery);
-          this.ifNotResult(Helper.pages);
-
-        }, error => {
-          console.log(error);
-          Helper.resultText = error.message;
-        });
     }
   }
 

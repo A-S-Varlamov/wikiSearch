@@ -9,17 +9,22 @@
 }
 
 .content {
-  height: 2rem;
+  height: 2.5rem;
   width: 100%;
   background-color: var(--menu-bg-color);
   box-shadow: 0 2px 4px var(--menu-shadow-color);
   color: #fff;
 }
 
+.content svg {
+  height: 1.2rem;
+  width: 1.2rem;
+  fill: var(--bg-color);
+}
+
 .form-control-range{
   width: 90%;
   margin: 0 auto;
-
   -webkit-appearance: none;
   border-radius:2px;
   height:10px;
@@ -43,19 +48,48 @@
 }
 
 .dropbtn {
-  font-family: fantasy;
+  font-family: 'OswaldFont';
+  font-size: 1rem;
   color: var(--menu-text-color);
   background-color: var(--menu-bg-color);
   border-top: 2px solid var(--menu-btn-border);
   cursor: pointer;
   padding: 0.33rem;
   white-space: nowrap;
+  height: 2.4rem;
 }
 
 .dropdown{
   position: relative;
   display: inline-block;
   width: 80%;
+}
+
+@media (max-width: 768px) {
+  .row {
+    display: block;
+  }
+
+  .dropbtn{
+    border-top: 1px solid var(--menu-btn-border);
+  }
+
+  .dropdown{
+    width: 100%;
+  }
+
+  .col{
+    padding: 0;
+  }
+
+  .dropdown:hover .dropdown-content {
+    top: 0 !important;
+    z-index: 20;
+  }
+
+  .dropdown-content {
+    transition: all 0s ease-in-out !important;
+  }
 }
 
 .dropdown-content {
@@ -89,6 +123,6 @@
   display: block;
   visibility: visible;
   opacity: 1;
-  top: 1.9rem;
+  top: 2.4rem;
 }
 

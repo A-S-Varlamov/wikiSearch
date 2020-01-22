@@ -16,13 +16,13 @@ export class QueryService {
 
   getQueryParams(searchStr: string, searchOffset: number, querySort: string) {
     let params = new HttpParams();
-    params = params.append('action', 'query');
-    params = params.append('format', 'json');
-    params = params.append('list', 'search');
-    params = params.append('srsort', querySort);
-    params = params.append('sroffset', searchOffset + '');
-    params = params.append('origin', '*');
-    params = params.append('srsearch', searchStr);
+    params = params.append('action', 'query')
+      .append('format', 'json')
+      .append('list', 'search')
+      .append('srsort', querySort)
+      .append('sroffset', searchOffset + '')
+      .append('origin', '*')
+      .append('srsearch', searchStr);
     return params;
   }
 

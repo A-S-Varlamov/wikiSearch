@@ -97,10 +97,10 @@ body {
 
 @font-face{
   font-family: 'MyLightFont';
-  src: url('./assets/fonts/Open_Sans_Condensed/OpenSansCondensed-Light.ttf') format('truetype');
+  src: url('./assets/fonts/OpenSansCondensed-Light.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: 'MyMediumFont';
-  src: url('./assets/fonts/Yanone_Kaffeesatz/static/YanoneKaffeesatz-Medium.ttf') format('truetype');
+  font-family: 'OswaldFont';
+  src: url('./assets/fonts/Oswald-Medium.ttf') format('truetype');
 }

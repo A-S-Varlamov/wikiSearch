@@ -18,6 +18,12 @@
   min-height: 5rem;
 }
 
+@media (max-width: 768px) {
+  .wikiIcon svg {
+    margin-top: 5rem;
+  }
+}
+
 .fixed {
   top: 3rem;
   position: fixed;
