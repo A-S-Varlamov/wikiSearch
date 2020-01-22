@@ -45,7 +45,7 @@ export class MediatorService extends Helper {
     }
   }
 
-  ifNewQuery(queryStr, newQuery, time) {
+  ifNewQuery(queryStr, newQuery, time): void {
     if (newQuery) {
       Helper.searchOffset = 0;
       this.localStorage.newRequest(queryStr, Helper.oldrequests, time, Helper.oldrequestsTime);
@@ -53,20 +53,20 @@ export class MediatorService extends Helper {
     }
   }
 
-  ifResponseError(response) {
+  ifResponseError(response): void {
     if (response['error']) {
       Helper.resultText = response['error'].info;
     }
   }
 
-  helperQueryDone(response, newQuery) {
+  helperQueryDone(response, newQuery): void {
     Helper.queryDone(response, newQuery);
     this.loaderToggle = !this.loaderToggle;
     this.ifNotResult(Helper.pages);
   }
 
 
-  addEventScroll() {
+  addEventScroll(): void {
     window.addEventListener('scroll', () => {
       const pageEnd = Helper.ifPageEnd(Helper.queryContinue);
       if (pageEnd) {
@@ -75,21 +75,21 @@ export class MediatorService extends Helper {
     });
   }
 
-  loadRequests() {
+  loadRequests(): void {
     const req = this.localStorage.getFromStorage('requests');
     if (req !== null) {
       Helper.oldrequests = JSON.parse(req);
     }
   }
 
-  loadRequestsTime() {
+  loadRequestsTime(): void {
     const time = this.localStorage.getFromStorage('requestsTime');
     if (time !== null) {
       Helper.oldrequestsTime = JSON.parse(time);
     }
   }
 
-  loadActiveTheme() {
+  loadActiveTheme(): void {
     const theme = this.localStorage.getFromStorage('activeTheme');
     if (theme !== null) {
       this.visualService.activeTheme = theme;
@@ -97,7 +97,7 @@ export class MediatorService extends Helper {
     }
   }
 
-  loadHue() {
+  loadHue(): void {
     const hue = this.localStorage.getFromStorage('hue');
     if (hue !== null) {
       this.visualService.themeHue = +hue;
@@ -105,7 +105,7 @@ export class MediatorService extends Helper {
     }
   }
 
-  setSorting(str) {
+  setSorting(str: string): void {
     if (Helper.setSorting(str)) {
       this.wikiSearch(Helper.searchStr, true);
     }

@@ -1,4 +1,4 @@
-import { Component} from '@angular/core'
+import {Component} from '@angular/core';
 import {MediatorService} from '../services/mediator.service'
 
 @Component({
@@ -9,15 +9,15 @@ import {MediatorService} from '../services/mediator.service'
 })
 export class MenuComponent {
 
-  constructor( private mediatorService: MediatorService ) { }
+  constructor( public mediatorService: MediatorService ) { }
 
-  changeColorSlider() {
-    const value = event.target['value']
+  changeColorSlider(event): void  {
+    const value = event.target['value'];
     document.documentElement.style.setProperty('--main-hue', value);
     this.mediatorService.saveToStorage('hue', value)
   }
 
-  setSort(str) {
+  setSort(str: string): void  {
     this.mediatorService.setSorting(str)
   }
 }

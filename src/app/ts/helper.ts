@@ -28,7 +28,7 @@ export abstract class Helper extends Data {
     return pages;
   }
 
-  protected static queryDone(response, newQuery) {
+  protected static queryDone(response, newQuery): void {
     let pages = [];
     pages = this.ifNewQuery(response, newQuery);
     this.ifQueryContinue(response);
@@ -36,7 +36,7 @@ export abstract class Helper extends Data {
     this.pages = pages;
   }
 
-  protected static setSorting(str) {
+  protected static setSorting(str: string): boolean {
     if (str !== this.querySort) {
       this.querySort = str;
       if (this.searchStr) {

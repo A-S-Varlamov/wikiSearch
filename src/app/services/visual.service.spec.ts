@@ -9,4 +9,11 @@ describe('VisualService', () => {
     const service: VisualService = TestBed.get(VisualService);
     expect(service).toBeTruthy();
   });
+
+  it('применение темы к документу', () => {
+    const service: VisualService = TestBed.get(VisualService);
+    service.setTheme('апельсин');
+    const result = document.documentElement.getAttribute('theme');
+    expect(result).toBe('orange');
+  });
 });
