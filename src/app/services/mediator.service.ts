@@ -69,7 +69,7 @@ export class MediatorService extends Helper {
   addEventScroll(): void {
     window.addEventListener('scroll', () => {
       const pageEnd = Helper.ifPageEnd(Helper.queryContinue);
-      if (pageEnd) {
+      if (pageEnd && Helper.searchStr) {
         this.wikiSearch(Helper.searchStr, false);
       }
     });

@@ -9,15 +9,18 @@ import {MediatorService} from '../services/mediator.service'
 })
 export class MenuComponent {
 
-  constructor( public mediatorService: MediatorService ) { }
+  constructor(public mediatorService: MediatorService) {
+  }
 
-  changeColorSlider(event): void  {
+  changeColorSlider(event): void {
     const value = event.target['value'];
     document.documentElement.style.setProperty('--main-hue', value);
     this.mediatorService.saveToStorage('hue', value)
   }
 
-  setSort(str: string): void  {
+  setSort(str: string): void {
     this.mediatorService.setSorting(str)
   }
+
 }
+
